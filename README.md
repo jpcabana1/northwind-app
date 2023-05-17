@@ -25,3 +25,9 @@ Test:
 * Extension Pack for Java
 * Lombok Annotations Support for VS Code
 * IntelliJ Neo Dark
+
+
+## SQL Server 
+
+* Connection String: Data Source=172.23.206.211, 1403;Initial Catalog=Master;User ID=sa;Password=!Passw0rd;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
+
