@@ -1,4 +1,4 @@
-package com.api.springboot.Repositories;
+package com.api.springboot.Repositories.JPA;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
