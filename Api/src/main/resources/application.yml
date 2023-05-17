@@ -3,10 +3,17 @@ spring:
         pathmatch:
             matching-strategy: ant-path-matcher
     jpa:
-        database-platform: org.hibernate.dialect.SQLServerDialect
         hibernate:
             ddl-auto: none
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        database-platform: org.hibernate.dialect.SQLServerDialect
+        show-sql: true
+        properties:
+            hibernate:
+                format_sql: true
     datasource:
         url: jdbc:sqlserver://172.23.206.211:1403;databaseName=Northwind;encrypt=true;trustServerCertificate=true;
         username: sa
         password: "!Passw0rd"
+        driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
