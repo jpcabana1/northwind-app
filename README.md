@@ -43,3 +43,4 @@ Após instalar o Maven é necessário reiniciar o pc.
 
 ## Java
 * Biblioteca swagger: **springdoc-openapi-ui**
+* Swagger Url: http://localhost:8080/swagger-ui/index.html

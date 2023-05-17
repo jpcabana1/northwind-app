@@ -13,5 +13,4 @@ public class CustomerController {
     public ResponseEntity<String> getAll() {
        return ResponseEntity.ok( "Hello World");
     }
-    
 }
