@@ -4,11 +4,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.api.springboot.Entities.Customer;
@@ -23,8 +23,8 @@ public class CustomerService implements ICustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    @Autowired
+    private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Override
     public List<Customer> getAll() {
@@ -33,11 +33,11 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public List<Customer> getByCustomerId(String CustomerId) {
-        return Optional.ofNullable(
-                entityManager.createNativeQuery(CustomerQuery.GetCustomerById, Customer.class)
-                        .setParameter("CustomerId", CustomerId)
-                        .getResultList())
-                .orElse(Collections.<Customer>emptyList());
+        var sql = CustomerQuery.GetCustomerById;
+        var parameters = new MapSqlParameterSource();
+        parameters.addValue("CustomerId", CustomerId);
+        var result = jdbcTemplate.query(sql, parameters, new BeanPropertyRowMapper<>(Customer.class));
+        return Optional.ofNullable(result).orElse(Collections.<Customer>emptyList());
     }
 
     @Override
