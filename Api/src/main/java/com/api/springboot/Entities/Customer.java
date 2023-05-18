@@ -1,4 +1,4 @@
-package com.api.springboot.Entity;
+package com.api.springboot.Entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +18,7 @@ public class Customer {
 
     @Id
     @Column(name="CustomerID", nullable=false, length=5)
-    private String CustomerID;
+    private String CustomerId;
 
     @Column(name="CompanyName", nullable=false, length=40)
     private String CompanyName;
