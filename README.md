@@ -10,10 +10,10 @@ Project for later reference in springboot
 | Command |  Script | 
 | --- | --- |
 | Install |   choco install oracle17jdk |
-| Upgrade |   choco upgrade oracle17jdk |
-| Uninstall | choco uninstall oracle17jdk |
 | Install |   choco install maven |
+| Upgrade |   choco upgrade oracle17jdk |
 | Upgrade |   choco upgrade maven |
+| Uninstall | choco uninstall oracle17jdk |
 | Uninstall | choco uninstall maven |
 
 
@@ -32,7 +32,7 @@ Após instalar o Maven é necessário reiniciar o pc.
 * Spring Boot Snippets
 * Extension Pack for Java
 * Lombok Annotations Support for VS Code
-* IntelliJ Neo Dark
+* Familiar Java Themes
 * Language Support for Java(TM) by Red Hat
 
 

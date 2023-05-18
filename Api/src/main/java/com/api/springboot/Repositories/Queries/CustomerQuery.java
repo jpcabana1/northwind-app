@@ -4,6 +4,6 @@ public class CustomerQuery {
     public static String GetCustomerById = 
                                     "SELECT *"
                                     + " FROM [dbo].[Customers]"
-                                    + " WHERE CustomerID = :CustomerId"
+                                    + " WHERE CustomerID LIKE '%' + :CustomerId + '%'"
                                     + " ORDER BY CustomerID";
 }
