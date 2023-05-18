@@ -17,5 +17,6 @@ public class OrdersQuery {
             "     INNER JOIN [dbo].[Order Details] od ON o.OrderID = od.OrderID" +
             "     INNER JOIN [dbo].[Products] p ON od.ProductID = p.ProductID" +
             "     INNER JOIN [dbo].[Categories] cat ON p.CategoryID = cat.CategoryID" +
-            " WHERE cus.CustomerID = :CustomerId";
+            " WHERE cus.CustomerID LIKE '%' + :CustomerId + '%'"+
+            " ORDER BY .OrderID";
 }
