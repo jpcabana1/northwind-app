@@ -23,8 +23,10 @@ public class OrdersService implements IOrdersService {
     @Override
     public Collection<OrdersDTO> GetOrdersByCustomer(String CustomerId) {
         var sql = OrdersQuery.GetOrdersByCustomerId;
+        
         var parameters = new MapSqlParameterSource();
         parameters.addValue("CustomerId", CustomerId);
+
         var result = jdbcTemplate.query(sql, parameters, new BeanPropertyRowMapper<>(OrdersDTO.class));
         return Optional.ofNullable(result).orElse(Collections.<OrdersDTO>emptyList());
     }
