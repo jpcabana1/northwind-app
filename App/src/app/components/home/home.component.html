@@ -25,6 +25,8 @@
 
   <mat-paginator [pageSizeOptions]="[10]"
                  showFirstLastButtons
-                 aria-label="Select page of periodic elements">
+                 aria-label="Select page of periodic elements"
+                 (page)="onPageChange($event)"
+                 >
   </mat-paginator>
 </div>
