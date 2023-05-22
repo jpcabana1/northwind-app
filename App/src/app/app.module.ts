@@ -9,11 +9,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { HomeComponent } from './components/home/home.component';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TitleComponent
+    AppComponent
+    , TitleComponent
+    , HomeComponent
   ],
   imports: [
     BrowserModule
@@ -22,6 +26,8 @@ import {MatButtonModule} from '@angular/material/button';
     , MatToolbarModule
     , MatIconModule
     , MatButtonModule
+    , MatTableModule
+    , MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
