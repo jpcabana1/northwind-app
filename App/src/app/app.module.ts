@@ -15,9 +15,18 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { CustomerService } from './services/customer/customer.service';
 import { HomeComponent } from './components/home/home.component';
 import { OrdersService } from './services/orders/orders.service';
+import { HomeGridButtonComponent } from './components/home-grid-button/home-grid-button.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CustomerOrdersComponent } from './components/customer-orders/customer-orders.component';
 
 @NgModule({
-  declarations: [AppComponent, TitleComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    TitleComponent,
+    HomeComponent,
+    HomeGridButtonComponent,
+    CustomerOrdersComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,6 +36,7 @@ import { OrdersService } from './services/orders/orders.service';
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
   ],
   providers: [CustomerService, OrdersService],
   bootstrap: [AppComponent],

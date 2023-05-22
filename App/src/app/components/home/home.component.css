@@ -4,5 +4,12 @@
 }
 
 table {
-  width: 100%;
+  /* display: grid;
+  place-items: center; */
+}
+
+
+.loading{
+  display: grid;
+  place-items: center;
 }

@@ -1,0 +1,88 @@
+<div class="mat-elevation-z8">
+  <!-- Loading -->
+  <div *ngIf="loading; else elseBlock">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!-- Table -->
+  <ng-template #elseBlock>
+    <h2>{{customerId}}</h2>
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="OrderId">
+        <th mat-header-cell *matHeaderCellDef>Order Id</th>
+        <td mat-cell *matCellDef="let element">
+          <b>{{ element.OrderId }}</b>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="OrderDate">
+        <th mat-header-cell *matHeaderCellDef>Contact Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.ContactName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="ShippedDate">
+        <th mat-header-cell *matHeaderCellDef>Shipped Date</th>
+        <td mat-cell *matCellDef="let element">
+          <app-home-grid-button
+            [customerId]="element.ShippedDate"
+          ></app-home-grid-button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ShipAddress">
+        <th mat-header-cell *matHeaderCellDef>Ship Address</th>
+        <td mat-cell *matCellDef="let element">
+          <app-home-grid-button
+            [customerId]="element.ShipAddress"
+          ></app-home-grid-button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ShipCity">
+        <th mat-header-cell *matHeaderCellDef>Ship City</th>
+        <td mat-cell *matCellDef="let element">
+          <app-home-grid-button
+            [customerId]="element.ShipCity"
+          ></app-home-grid-button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ShipCountry">
+        <th mat-header-cell *matHeaderCellDef>Ship Country</th>
+        <td mat-cell *matCellDef="let element">
+          <app-home-grid-button
+            [customerId]="element.ShipCountry"
+          ></app-home-grid-button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ShipPostalCode">
+        <th mat-header-cell *matHeaderCellDef>Ship PostalCode</th>
+        <td mat-cell *matCellDef="let element">
+          <app-home-grid-button
+            [customerId]="element.ShipPostalCode"
+          ></app-home-grid-button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ShowDetais">
+        <th mat-header-cell *matHeaderCellDef>Ship PostalCode</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button>Basic</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </ng-template>
+
+  <!-- Pagination bar -->
+  <mat-paginator
+    [disabled]="loading"
+    [pageSizeOptions]="[defaultPageSize]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements"
+  >
+  </mat-paginator>
+</div>
