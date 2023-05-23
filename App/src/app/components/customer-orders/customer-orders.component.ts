@@ -14,7 +14,8 @@ import { OrdersService } from 'src/app/services/orders/orders.service';
 export class CustomerOrdersComponent implements OnInit {
   customerId!: string;
   loading: boolean = false;
-  defaultPageSize: number = 10;
+  defaultPaginatorPageSize: number = 10;
+  defaultPageSize: number = 100;
   displayedColumns: string[] = [
     'OrderId',
     'OrderDate',
@@ -48,9 +49,11 @@ export class CustomerOrdersComponent implements OnInit {
     if (this.customerId === null || this.customerId === undefined) {
       this.router.navigate(['/home']);
     } else {
-      const orderList: OrderCustomerModel[] =
-        this.orderService.getOrdersByCustomer(this.customerId);
-      this.dataSource = new MatTableDataSource(orderList);
+      this.orderService.getOrdersByCustomer(this.customerId, 0, 100)
+      .subscribe((response) => {
+        this.dataSource = new MatTableDataSource(response);
+        this.dataSource.paginator = this.paginator;
+      })
     }
   }
 }
