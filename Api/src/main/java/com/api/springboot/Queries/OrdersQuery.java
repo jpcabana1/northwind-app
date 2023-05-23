@@ -1,4 +1,4 @@
-package com.api.springboot.Repositories.Queries;
+package com.api.springboot.Queries;
 
 public class OrdersQuery {
     public static String GetOrdersByCustomerId = """
