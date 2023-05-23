@@ -2,22 +2,28 @@ package com.api.springboot.Queries;
 
 public class OrdersQuery {
     public static String GetOrdersByCustomerId = """
-                SELECT
+            SELECT 
                 o.OrderID
-                , o.CustomerID
                 , o.OrderDate
-                , o.RequiredDate
                 , o.ShippedDate
-                , od.Quantity
-                , od.Discount
-                , od.UnitPrice
-                , p.ProductName
-            FROM [dbo].[Orders] o 
-                INNER JOIN [dbo].[Customers] cus ON o.CustomerID = cus.CustomerID
-                INNER JOIN [dbo].[Order Details] od ON o.OrderID = od.OrderID
-                INNER JOIN [dbo].[Products] p ON od.ProductID = p.ProductID
-                INNER JOIN [dbo].[Categories] cat ON p.CategoryID = cat.CategoryID
-            WHERE cus.CustomerID LIKE '%' + :CustomerId + '%'
+                , o.ShipAddress
+                , o.ShipCity
+                , o.ShipCountry
+                , o.ShipPostalCode
+            FROM Orders o
+            WHERE o.CustomerID = :customerId
             ORDER BY o.OrderID
+            OFFSET :pageIndex ROWS FETCH NEXT :pageSize ROWS ONLY
+            """;
+    public static String GetOrderDetailsByOrderId = """
+        SELECT 
+            p.ProductName
+            , od.Quantity
+            , od.UnitPrice
+            , od.Discount
+        FROM [Order Details] od INNER JOIN  Products p ON od.ProductID = p.ProductID
+        WHERE od.OrderID = :orderId
+        ORDER BY od.OrderID
+        OFFSET :pageIndex ROWS FETCH NEXT :pageSize ROWS ONLY
             """;
 }
