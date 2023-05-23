@@ -20,7 +20,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   dataSource!: MatTableDataSource<HomeResultModel>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   loading: boolean = true;
-  defaultPageSize: number = 10;
+  defaultPaginatorPageSize: number = 10;
+  defaultPageSize: number = 100;
   displayedColumns: string[] = [
     'CustomerId',
     'ContactName',
@@ -39,24 +40,22 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.clearDataSource();
     this.getOrders(0, this.defaultPageSize);
   }
 
   getOrders(pageIndex: number, pageSize: number) {
-    const homeList: HomeResultModel[] = this.customerService.getCustomerOrders(
-      pageIndex,
-      pageSize
-    );
-    this.dataSource = new MatTableDataSource(homeList);
-    this.dataSource.paginator = this.paginator;
-    this.setLoading(false);
+    this.customerService
+      .getCustomerOrders(pageIndex, pageSize)
+      .subscribe((response) => {
+        this.dataSource = new MatTableDataSource(response);
+        this.dataSource.paginator = this.paginator;
+        this.setLoading(false);
+      });
   }
 
   onPageChange(event: PageEvent) {
     console.log(event);
     this.setLoading(true);
-    this.clearDataSource();
     this.getOrders(event.pageIndex, event.pageSize);
   }
 

@@ -18,6 +18,7 @@ import { OrdersService } from './services/orders/orders.service';
 import { HomeGridButtonComponent } from './components/home-grid-button/home-grid-button.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CustomerOrdersComponent } from './components/customer-orders/customer-orders.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { CustomerOrdersComponent } from './components/customer-orders/customer-o
     MatTableModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    HttpClientModule
   ],
   providers: [CustomerService, OrdersService],
   bootstrap: [AppComponent],

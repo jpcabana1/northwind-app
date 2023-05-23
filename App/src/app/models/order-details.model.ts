@@ -1,6 +1,6 @@
 export interface OrderDetailsModel {
-  ProductName: string;
-  Quantity: number;
-  UnitPrice: number;
-  Discount: number;
+  productName: string;
+  quantity: number;
+  unitPrice: number;
+  discount: number;
 }
