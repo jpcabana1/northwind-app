@@ -1,4 +1,10 @@
-import { ViewChild, Component, OnInit, Inject } from '@angular/core';
+import {
+  ViewChild,
+  Component,
+  OnInit,
+  Inject,
+  AfterViewInit,
+} from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { HomeResultModel } from 'src/app/models/home-result.model';
@@ -10,18 +16,17 @@ import { ICustomerService } from 'src/app/services/interfaces/icustomer.service'
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
+  dataSource!: MatTableDataSource<HomeResultModel>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   loading: boolean = true;
-  defaultPageSize : number = 10;
+  defaultPageSize: number = 10;
   displayedColumns: string[] = [
     'CustomerId',
     'ContactName',
     'OrdersCount',
-    'ShowDetais',
+    'GotoCustomerOrders',
   ];
-
-  dataSource!: MatTableDataSource<HomeResultModel>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   private customerService: ICustomerService;
 
@@ -29,22 +34,30 @@ export class HomeComponent implements OnInit {
     this.customerService = service;
   }
 
-  ngOnInit() {
-    this.clearDataSource()
-    setTimeout(() => this.getOrders(0, this.defaultPageSize), 2000);
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
-  onPageChange(event: PageEvent) {
-    console.log(event)
-    this.setLoading(true);
+  ngOnInit() {
     this.clearDataSource();
-    setTimeout(() => this.getOrders(event.pageIndex, event.pageSize), 2000);
+    this.getOrders(0, this.defaultPageSize);
   }
 
   getOrders(pageIndex: number, pageSize: number) {
-    this.dataSource = new MatTableDataSource(this.customerService.getCustomerOrders(pageIndex, pageSize));
+    const homeList: HomeResultModel[] = this.customerService.getCustomerOrders(
+      pageIndex,
+      pageSize
+    );
+    this.dataSource = new MatTableDataSource(homeList);
     this.dataSource.paginator = this.paginator;
     this.setLoading(false);
+  }
+
+  onPageChange(event: PageEvent) {
+    console.log(event);
+    this.setLoading(true);
+    this.clearDataSource();
+    this.getOrders(event.pageIndex, event.pageSize);
   }
 
   clearDataSource() {

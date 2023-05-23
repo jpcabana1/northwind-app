@@ -10,6 +10,7 @@ export class CustomerService implements ICustomerService {
 constructor() { }
 
   getCustomerOrders(pageIndex: number, pageSize: number): HomeResultModel[] {
+
     const ELEMENT_DATA: HomeResultModel[] = [
       { CustomerId: 'ALFKI', ContactName: 'Maria Anders', OrdersCount: 6 },
       { CustomerId: 'ANATR', ContactName: 'Ana Trujillo', OrdersCount: 4 },

@@ -6,7 +6,7 @@
 
   <!-- Table -->
   <ng-template #elseBlock>
-    <h2>{{customerId}}</h2>
+    <h2>{{ customerId }}</h2>
     <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="OrderId">
         <th mat-header-cell *matHeaderCellDef>Order Id</th>
@@ -16,59 +16,45 @@
       </ng-container>
 
       <ng-container matColumnDef="OrderDate">
-        <th mat-header-cell *matHeaderCellDef>Contact Name</th>
-        <td mat-cell *matCellDef="let element">{{ element.ContactName }}</td>
+        <th mat-header-cell *matHeaderCellDef>OrderDate</th>
+        <td mat-cell *matCellDef="let element">{{ element.OrderDate }}</td>
       </ng-container>
 
       <ng-container matColumnDef="ShippedDate">
-        <th mat-header-cell *matHeaderCellDef>Shipped Date</th>
-        <td mat-cell *matCellDef="let element">
-          <app-home-grid-button
-            [customerId]="element.ShippedDate"
-          ></app-home-grid-button>
-        </td>
+        <th mat-header-cell *matHeaderCellDef>ShippedDate</th>
+        <td mat-cell *matCellDef="let element">{{ element.ShippedDate }}</td>
       </ng-container>
 
       <ng-container matColumnDef="ShipAddress">
-        <th mat-header-cell *matHeaderCellDef>Ship Address</th>
-        <td mat-cell *matCellDef="let element">
-          <app-home-grid-button
-            [customerId]="element.ShipAddress"
-          ></app-home-grid-button>
-        </td>
+        <th mat-header-cell *matHeaderCellDef>ShipAddress</th>
+        <td mat-cell *matCellDef="let element">{{ element.ShipAddress }}</td>
       </ng-container>
 
       <ng-container matColumnDef="ShipCity">
-        <th mat-header-cell *matHeaderCellDef>Ship City</th>
-        <td mat-cell *matCellDef="let element">
-          <app-home-grid-button
-            [customerId]="element.ShipCity"
-          ></app-home-grid-button>
-        </td>
+        <th mat-header-cell *matHeaderCellDef>ShipCity</th>
+        <td mat-cell *matCellDef="let element">{{ element.ShipCity }}</td>
       </ng-container>
 
       <ng-container matColumnDef="ShipCountry">
-        <th mat-header-cell *matHeaderCellDef>Ship Country</th>
-        <td mat-cell *matCellDef="let element">
-          <app-home-grid-button
-            [customerId]="element.ShipCountry"
-          ></app-home-grid-button>
-        </td>
+        <th mat-header-cell *matHeaderCellDef>ShipCountry</th>
+        <td mat-cell *matCellDef="let element">{{ element.ShipCountry }}</td>
       </ng-container>
 
       <ng-container matColumnDef="ShipPostalCode">
-        <th mat-header-cell *matHeaderCellDef>Ship PostalCode</th>
-        <td mat-cell *matCellDef="let element">
-          <app-home-grid-button
-            [customerId]="element.ShipPostalCode"
-          ></app-home-grid-button>
-        </td>
+        <th mat-header-cell *matHeaderCellDef>ShipPostalCode</th>
+        <td mat-cell *matCellDef="let element">{{ element.ShipPostalCode }}</td>
       </ng-container>
 
       <ng-container matColumnDef="ShowDetais">
-        <th mat-header-cell *matHeaderCellDef>Ship PostalCode</th>
+        <th mat-header-cell *matHeaderCellDef>ShowDetais</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-button>Basic</button>
+          <button mat-button color="primary">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="double_arrow"
+            ></mat-icon>
+          </button>
         </td>
       </ng-container>
 

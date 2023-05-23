@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderCustomerModel } from 'src/app/models/order-customer.model';
+import { IOrderService } from 'src/app/services/interfaces/iorder.service';
+import { OrdersService } from 'src/app/services/orders/orders.service';
 
 @Component({
   selector: 'app-customer-orders',
@@ -12,7 +14,7 @@ import { OrderCustomerModel } from 'src/app/models/order-customer.model';
 export class CustomerOrdersComponent implements OnInit {
   customerId!: string;
   loading: boolean = false;
-  defaultPageSize: number = 25;
+  defaultPageSize: number = 10;
   displayedColumns: string[] = [
     'OrderId',
     'OrderDate',
@@ -21,11 +23,19 @@ export class CustomerOrdersComponent implements OnInit {
     'ShipCity',
     'ShipCountry',
     'ShipPostalCode',
+    'ShowDetais'
   ];
   dataSource!: MatTableDataSource<OrderCustomerModel>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  private orderService: IOrderService;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    @Inject(OrdersService) service: IOrderService
+  ) {
+    this.orderService = service;
     this.dataSource = new MatTableDataSource<OrderCustomerModel>([]);
     this.dataSource.paginator = this.paginator;
   }
@@ -37,6 +47,10 @@ export class CustomerOrdersComponent implements OnInit {
 
     if (this.customerId === null || this.customerId === undefined) {
       this.router.navigate(['/home']);
+    } else {
+      const orderList: OrderCustomerModel[] =
+        this.orderService.getOrdersByCustomer(this.customerId);
+      this.dataSource = new MatTableDataSource(orderList);
     }
   }
 }
