@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+  db:
+    container_name: my_db
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    environment:
+      SA_PASSWORD: "!Passw0rd"
+      ACCEPT_EULA: "Y"
+    ports:
+      - 1403:1433
+    networks:
+      - back-end
+networks:
+  back-end:

@@ -62,3 +62,15 @@ Após instalar o Maven é necessário reiniciar o pc.
 ## Angular
 
 * ng generate environments
+
+## Docker 
+
+> Execute the command **mvn clean package** before.
+
+### Build
+* docker build --tag=northwind-api:1.1  .
+* docker run -d -p 8080:8080 northwind-api:1.1 
+
+### Compose
+* docker compose --file docker-compose.yml up -d --build
+* docker compose --file docker-compose.yml down

@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class CorsConfiguration {
     
-    @Value("${northwind.cors.app-url}")
+    @Value("${NORTHWIND_CORS_APP_URL:${northwind.cors.app-url}}")
     private String appUrl;
 
     @Bean
