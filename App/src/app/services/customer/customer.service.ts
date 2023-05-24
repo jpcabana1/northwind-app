@@ -13,15 +13,19 @@ export class CustomerService implements ICustomerService {
 
   constructor(private http: HttpClient) {}
 
-  getCustomerOrders(
-    pageIndex: number,
-    pageSize: number
-  ): Observable<HomeResultModel[]> {
-    return this.http.get<HomeResultModel[]>(SERVER_URL + this.url, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-      params: { pageIndex: pageIndex, pageSize: pageSize },
+  async getCustomerOrders(pageIndex: number,pageSize: number): Promise<HomeResultModel[]> {
+
+    const requestUrl : string = SERVER_URL + this.url;
+    const requestHeaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json',});
+    const requestParameters: any = { pageIndex: pageIndex, pageSize: pageSize };
+    let response : HomeResultModel[];
+
+    return new Promise<HomeResultModel[]>((resolve, reject) => {
+      try {
+        this.http.get<HomeResultModel[]>(requestUrl, {headers: requestHeaders, params: requestParameters,}).subscribe(response => resolve([...response]));
+      } catch (error) {
+        reject(new Array<HomeResultModel[]>())
+      }
     });
   }
 }

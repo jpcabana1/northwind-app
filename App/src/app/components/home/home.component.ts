@@ -43,14 +43,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.getOrders(0, this.defaultPageSize);
   }
 
-  getOrders(pageIndex: number, pageSize: number) {
-    this.customerService
-      .getCustomerOrders(pageIndex, pageSize)
-      .subscribe((response) => {
-        this.dataSource = new MatTableDataSource(response);
-        this.dataSource.paginator = this.paginator;
-        this.setLoading(false);
-      });
+  async getOrders(pageIndex: number, pageSize: number) {
+    const response = await this.customerService.getCustomerOrders(pageIndex, pageSize);
+    this.dataSource = new MatTableDataSource(response);
+    this.dataSource.paginator = this.paginator;
+    this.setLoading(false);
   }
 
   onPageChange(event: PageEvent) {
