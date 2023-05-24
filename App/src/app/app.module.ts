@@ -19,6 +19,7 @@ import { HomeGridButtonComponent } from './components/home-grid-button/home-grid
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CustomerOrdersComponent } from './components/customer-orders/customer-orders.component';
 import { HttpClientModule } from '@angular/common/http';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     HomeGridButtonComponent,
     CustomerOrdersComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,

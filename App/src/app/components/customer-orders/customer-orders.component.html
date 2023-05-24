@@ -45,18 +45,16 @@
         <td mat-cell *matCellDef="let element">{{ element.shipPostalCode }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="ShowDetais">
-        <th mat-header-cell *matHeaderCellDef>ShowDetais</th>
+      <ng-container matColumnDef="ShowDetails">
+        <th mat-header-cell *matHeaderCellDef>ShowDetails</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-button color="primary">
-            <mat-icon
-              aria-hidden="false"
-              aria-label="Example home icon"
-              fontIcon="double_arrow"
-            ></mat-icon>
-          </button>
+          <app-home-grid-button
+            [orderId]="element.orderId"
+            [route]="this.pathDetails"
+          ></app-home-grid-button>
         </td>
       </ng-container>
+
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

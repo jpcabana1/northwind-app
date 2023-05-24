@@ -1,0 +1,46 @@
+<div class="mat-elevation-z8">
+
+  <!-- Loading -->
+  <div class="loading"  *ngIf="loading; else elseBlock">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!-- Table -->
+  <ng-template #elseBlock>
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="ProductName">
+        <th mat-header-cell *matHeaderCellDef>ProductName</th>
+        <td mat-cell *matCellDef="let element">
+          <b>{{ element.productName }}</b>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Quantity">
+        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="UnitPrice">
+        <th mat-header-cell *matHeaderCellDef>UnitPrice</th>
+        <td mat-cell *matCellDef="let element">{{ element.unitPrice }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Discount">
+        <th mat-header-cell *matHeaderCellDef>Discount</th>
+        <td mat-cell *matCellDef="let element">{{ element.discount }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </ng-template>
+
+  <!-- Pagination bar -->
+  <mat-paginator
+    [length]="defaultPageSize"
+    [pageSize]="defaultPaginatorPageSize"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    showFirstLastButtons
+  >
+  </mat-paginator>
+</div>

@@ -8,14 +8,23 @@ import { Router } from '@angular/router';
 })
 export class HomeGridButtonComponent implements OnInit {
   @Input() customerId!: string;
+  @Input() orderId!: string;
   @Input() route!: string;
   constructor(private router: Router) {}
 
   ngOnInit() {}
 
   click() {
-    this.router.navigate([this.route], {
-      queryParams: { customerId: this.customerId },
-    });
+    if (this.customerId !== null && this.customerId !== undefined) {
+      this.router.navigate([this.route], {
+        queryParams: { customerId: this.customerId },
+      });
+    }
+
+    if (this.orderId !== null && this.orderId !== undefined) {
+      this.router.navigate([this.route], {
+        queryParams: { orderId: this.orderId },
+      });
+    }
   }
 }

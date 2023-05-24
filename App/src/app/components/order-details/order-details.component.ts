@@ -2,34 +2,31 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OrderCustomerModel } from 'src/app/models/order-customer.model';
+import { OrderDetailsModel } from 'src/app/models/order-details.model';
 import { IOrderService } from 'src/app/services/interfaces/iorder.service';
 import { OrdersService } from 'src/app/services/orders/orders.service';
-import { home, orderDetails } from 'src/app/util/paths';
+import { home } from 'src/app/util/paths';
 
 @Component({
-  selector: 'app-customer-orders',
-  templateUrl: './customer-orders.component.html',
-  styleUrls: ['./customer-orders.component.css'],
+  selector: 'app-order-details',
+  templateUrl: './order-details.component.html',
+  styleUrls: ['./order-details.component.css'],
 })
-export class CustomerOrdersComponent implements OnInit {
-  pathDetails : string = orderDetails;
-  customerId!: string;
-  loading: boolean = false;
+export class OrderDetailsComponent implements OnInit {
+  orderId!: number;
+
+  dataSource!: MatTableDataSource<OrderDetailsModel>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  loading: boolean = true;
   defaultPaginatorPageSize: number = 10;
   defaultPageSize: number = 100;
+
   displayedColumns: string[] = [
-    'OrderId',
-    'OrderDate',
-    'ShippedDate',
-    'ShipAddress',
-    'ShipCity',
-    'ShipCountry',
-    'ShipPostalCode',
-    'ShowDetails'
+    'ProductName',
+    'Quantity',
+    'UnitPrice',
+    'Discount',
   ];
-  dataSource!: MatTableDataSource<OrderCustomerModel>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   private orderService: IOrderService;
 
@@ -39,25 +36,30 @@ export class CustomerOrdersComponent implements OnInit {
     @Inject(OrdersService) service: IOrderService
   ) {
     this.orderService = service;
-    this.dataSource = new MatTableDataSource<OrderCustomerModel>([]);
+    this.dataSource = new MatTableDataSource<OrderDetailsModel>([]);
     this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      this.customerId = params['customerId'];
+      this.orderId = params['orderId'];
     });
 
-    if (this.customerId === null || this.customerId === undefined) {
+    if (this.orderId === null || this.orderId === undefined) {
       this.router.navigate([home]);
     } else {
-      this.load();
+      this.getOrderDetails(this.orderId, 0, 100)
     }
   }
 
-  async load() {
-    const response = await this.orderService.getOrdersByCustomer(this.customerId, 0, 100)
+  async getOrderDetails(orderId: number, pageIndex: number, pageSize: number) {
+    const response = await this.orderService.getOrderDetails(orderId, pageIndex, pageSize)
     this.dataSource = new MatTableDataSource(response);
     this.dataSource.paginator = this.paginator;
+    this.setLoading(false)
+  }
+
+  setLoading(state: boolean) {
+    this.loading = state;
   }
 }

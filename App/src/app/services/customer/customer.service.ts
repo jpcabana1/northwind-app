@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HomeResultModel } from 'src/app/models/home-result.model';
 import { ICustomerService } from '../interfaces/icustomer.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { SERVER_URL } from 'src/app/util/temp-config';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class CustomerService implements ICustomerService {
 
   async getCustomerOrders(pageIndex: number,pageSize: number): Promise<HomeResultModel[]> {
 
-    const requestUrl : string = SERVER_URL + this.path;
+    const requestUrl : string = environment.SERVER_URL + this.path;
     const requestHeaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json',});
     const requestParameters: any = { pageIndex: pageIndex, pageSize: pageSize };
 

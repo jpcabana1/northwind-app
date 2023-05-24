@@ -3,7 +3,9 @@ import { IOrderService } from '../interfaces/iorder.service';
 import { OrderCustomerModel } from 'src/app/models/order-customer.model';
 import { OrderDetailsModel } from 'src/app/models/order-details.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { SERVER_URL } from 'src/app/util/temp-config';
+import { environment } from 'src/environments/environment';
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +15,7 @@ export class OrdersService implements IOrderService {
 
  async getOrdersByCustomer(customerId: string,pageIndex: number,pageSize: number): Promise<OrderCustomerModel[]> {
     let path: string = '/orders/orders-by-customer-id';
-    const requestUrl : string = SERVER_URL + path;
+    const requestUrl : string = environment.SERVER_URL + path;
     const requestHeaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json',});
     const requestParameters: any = {  customerId: customerId, pageIndex: pageIndex, pageSize: pageSize };
 
@@ -30,7 +32,7 @@ export class OrdersService implements IOrderService {
   async getOrderDetails(orderId: number,pageIndex: number,pageSize: number): Promise<OrderDetailsModel[]> {
 
     let path: string = '/orders/order-details';
-    const requestUrl : string = SERVER_URL + path;
+    const requestUrl : string = environment.SERVER_URL + path;
     const requestHeaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json',});
     const requestParameters: any = {  orderId: orderId, pageIndex: pageIndex, pageSize: pageSize };
 

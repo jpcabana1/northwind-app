@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { HomeResultModel } from 'src/app/models/home-result.model';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { ICustomerService } from 'src/app/services/interfaces/icustomer.service';
+import { customerOrders } from 'src/app/util/paths';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ import { ICustomerService } from 'src/app/services/interfaces/icustomer.service'
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-  pathOrders : string = '/order-by-customer'
+  pathOrders : string = customerOrders
   dataSource!: MatTableDataSource<HomeResultModel>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   loading: boolean = true;
