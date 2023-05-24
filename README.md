@@ -60,3 +60,5 @@ Após instalar o Maven é necessário reiniciar o pc.
 * Swagger Url: http://localhost:8080/swagger-ui/index.html
 
 ## Angular
+
+* ng generate environments
