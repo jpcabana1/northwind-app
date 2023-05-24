@@ -49,11 +49,13 @@ export class CustomerOrdersComponent implements OnInit {
     if (this.customerId === null || this.customerId === undefined) {
       this.router.navigate(['/home']);
     } else {
-      this.orderService.getOrdersByCustomer(this.customerId, 0, 100)
-      .subscribe((response) => {
-        this.dataSource = new MatTableDataSource(response);
-        this.dataSource.paginator = this.paginator;
-      })
+      this.load();
     }
+  }
+
+  async load() {
+    const response = await this.orderService.getOrdersByCustomer(this.customerId, 0, 100)
+    this.dataSource = new MatTableDataSource(response);
+    this.dataSource.paginator = this.paginator;
   }
 }
