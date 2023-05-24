@@ -17,6 +17,7 @@ import { ICustomerService } from 'src/app/services/interfaces/icustomer.service'
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+  pathOrders : string = '/order-by-customer'
   dataSource!: MatTableDataSource<HomeResultModel>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   loading: boolean = true;

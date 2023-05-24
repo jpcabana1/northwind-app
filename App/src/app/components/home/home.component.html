@@ -30,6 +30,7 @@
         <td mat-cell *matCellDef="let element">
           <app-home-grid-button
             [customerId]="element.customerId"
+            [route]="this.pathOrders"
           ></app-home-grid-button>
         </td>
       </ng-container>

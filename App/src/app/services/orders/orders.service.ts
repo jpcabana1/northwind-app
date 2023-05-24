@@ -9,14 +9,11 @@ import { SERVER_URL } from 'src/app/util/temp-config';
   providedIn: 'root',
 })
 export class OrdersService implements IOrderService {
-
-  private path: string = '/orders/orders-by-customer-id';
-
   constructor(private http: HttpClient) {}
 
  async getOrdersByCustomer(customerId: string,pageIndex: number,pageSize: number): Promise<OrderCustomerModel[]> {
-
-    const requestUrl : string = SERVER_URL + this.path;
+    let path: string = '/orders/orders-by-customer-id';
+    const requestUrl : string = SERVER_URL + path;
     const requestHeaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json',});
     const requestParameters: any = {  customerId: customerId, pageIndex: pageIndex, pageSize: pageSize };
 
@@ -30,11 +27,20 @@ export class OrdersService implements IOrderService {
     });
 
   }
-  getOrderDetails(
-    orderId: number,
-    pageIndex: number,
-    pageSize: number
-  ): Promise<OrderDetailsModel[]> {
-    throw new Error('Method not implemented.');
+  async getOrderDetails(orderId: number,pageIndex: number,pageSize: number): Promise<OrderDetailsModel[]> {
+
+    let path: string = '/orders/order-details';
+    const requestUrl : string = SERVER_URL + path;
+    const requestHeaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json',});
+    const requestParameters: any = {  orderId: orderId, pageIndex: pageIndex, pageSize: pageSize };
+
+    return new Promise<OrderDetailsModel[]>((resolve, reject) =>{
+      try {
+        this.http.get<OrderDetailsModel[]>(requestUrl, {headers: requestHeaders, params : requestParameters})
+        .subscribe(response => resolve([...response]))
+      } catch (error) {
+        reject(new Array<OrderDetailsModel[]>());
+      }
+    })
   }
 }
