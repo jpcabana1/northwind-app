@@ -60,4 +60,8 @@ export class CustomerOrdersComponent implements OnInit {
     this.dataSource = new MatTableDataSource(response);
     this.dataSource.paginator = this.paginator;
   }
+
+  back(){
+    this.router.navigate([home])
+  }
 }

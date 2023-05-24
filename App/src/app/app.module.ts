@@ -20,6 +20,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CustomerOrdersComponent } from './components/customer-orders/customer-orders.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
+import {MatGridListModule} from '@angular/material/grid-list'
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { OrderDetailsComponent } from './components/order-details/order-details.
     MatTableModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatGridListModule
   ],
   providers: [CustomerService, OrdersService],
   bootstrap: [AppComponent],

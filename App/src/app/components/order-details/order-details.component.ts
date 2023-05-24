@@ -1,11 +1,11 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderDetailsModel } from 'src/app/models/order-details.model';
 import { IOrderService } from 'src/app/services/interfaces/iorder.service';
 import { OrdersService } from 'src/app/services/orders/orders.service';
-import { home } from 'src/app/util/paths';
+import { customerOrders, home } from 'src/app/util/paths';
 
 @Component({
   selector: 'app-order-details',
@@ -13,8 +13,8 @@ import { home } from 'src/app/util/paths';
   styleUrls: ['./order-details.component.css'],
 })
 export class OrderDetailsComponent implements OnInit {
-  orderId!: number;
-
+  @Input() orderId!: number;
+  @Input() customerId!: string;
   dataSource!: MatTableDataSource<OrderDetailsModel>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   loading: boolean = true;
@@ -43,6 +43,7 @@ export class OrderDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.orderId = params['orderId'];
+      this.customerId = params['customerId']
     });
 
     if (this.orderId === null || this.orderId === undefined) {
@@ -61,5 +62,11 @@ export class OrderDetailsComponent implements OnInit {
 
   setLoading(state: boolean) {
     this.loading = state;
+  }
+
+  back(){
+    this.router.navigate([customerOrders], {
+      queryParams: { customerId: this.customerId },
+    })
   }
 }

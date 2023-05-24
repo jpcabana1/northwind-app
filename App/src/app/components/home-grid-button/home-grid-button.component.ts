@@ -23,7 +23,7 @@ export class HomeGridButtonComponent implements OnInit {
 
     if (this.orderId !== null && this.orderId !== undefined) {
       this.router.navigate([this.route], {
-        queryParams: { orderId: this.orderId },
+        queryParams: { orderId: this.orderId, customerId: this.customerId },
       });
     }
   }

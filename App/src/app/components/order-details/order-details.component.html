@@ -7,6 +7,21 @@
 
   <!-- Table -->
   <ng-template #elseBlock>
+
+    <mat-grid-list cols="2" rowHeight="3rem">
+      <mat-grid-tile colspan=1><h2>OrderId: {{ orderId }}</h2></mat-grid-tile>
+      <mat-grid-tile colspan=1>
+        <button mat-button color="warn" (click)="back()">
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="arrow_back_ios_new"
+          ></mat-icon>
+          Voltar
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+
     <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="ProductName">
         <th mat-header-cell *matHeaderCellDef>ProductName</th>
