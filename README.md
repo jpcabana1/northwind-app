@@ -1,9 +1,9 @@
 # Angular + Spring Boot
 
-<img src="https://angular.gallerycdn.vsassets.io/extensions/angular/ng-template/16.0.0/1683140320423/Microsoft.VisualStudio.Services.Icons.Default" alt="Angular" style="height: 105x; width: 105px;">
-<img src="https://vscjava.gallerycdn.vsassets.io/extensions/vscjava/vscode-spring-boot-dashboard/0.13.2023051200/1683849854838/Microsoft.VisualStudio.Services.Icons.Default" alt="Spring Boot" style="height: 90px; width: 90px;">
-<img src="https://ms-mssql.gallerycdn.vsassets.io/extensions/ms-mssql/sql-bindings-vscode/0.4.0/1684435163379/Microsoft.VisualStudio.Services.Icons.Default"alt="SQLServer" style="height: 90px; width: 90px; margin-left: 10px">
-<img src="https://cdn-icons-png.flaticon.com/512/5969/5969059.png"alt="Docker" style="height: 90px; width: 90px; margin-left: 10px">
+<img src="https://angular.gallerycdn.vsassets.io/extensions/angular/ng-template/16.0.0/1683140320423/Microsoft.VisualStudio.Services.Icons.Default" alt="Angular" style="height: 105x; width: 105px;float: left;">
+<img src="https://vscjava.gallerycdn.vsassets.io/extensions/vscjava/vscode-spring-boot-dashboard/0.13.2023051200/1683849854838/Microsoft.VisualStudio.Services.Icons.Default" alt="Spring Boot" style="height: 90px; width: 90px;float: left;">
+<img src="https://ms-mssql.gallerycdn.vsassets.io/extensions/ms-mssql/sql-bindings-vscode/0.4.0/1684435163379/Microsoft.VisualStudio.Services.Icons.Default"alt="SQLServer" style="height: 90px; width: 90px; margin-left: 10px;float: left;">
+<img src="https://cdn-icons-png.flaticon.com/512/5969/5969059.png"alt="Docker" style="height: 90px; width: 90px; margin-left: 10px;float: left;">
 
 
 <br/>
