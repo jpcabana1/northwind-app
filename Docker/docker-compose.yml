@@ -2,8 +2,8 @@ version: '3.9'
 services:
  
   northwind-db:
-    container_name: northwind-db
     image: "mcr.microsoft.com/mssql/server:2022-latest"
+    container_name: northwind-db
     environment:
       SA_PASSWORD: "!Passw0rd"
       ACCEPT_EULA: "Y"
@@ -13,18 +13,31 @@ services:
       - northwind
 
   northwind-api:
-    image: northwind-api:1.1
+    image: jpcabana1/northwind-api:latest
     container_name: northwind-api
     environment:
       - SPRING_DATASOURCE_URL=jdbc:sqlserver://northwind-db;databaseName=Northwind;encrypt=true;trustServerCertificate=true;
       - SPRING_DATASOURCE_USERNAME=sa
       - SPRING_DATASOURCE_PASSWORD=!Passw0rd
-      - NORTHWIND_CORS_APP_URL=http://localhost:4200/
+      - NORTHWIND_CORS_APP_URL=http://localhost:4200
     ports:
       - 8080:8080
     networks:
       - northwind
     depends_on:
       - northwind-db
+
+  northwind-app:
+    image: jpcabana1/northwind-app:latest
+    container_name: northwind-app
+    environment:
+      - SERVER_URL=http://localhost:8080
+    ports:
+      - 4200:80
+    networks:
+      - northwind
+    depends_on:
+      - northwind-api
+    
 networks:
   northwind:

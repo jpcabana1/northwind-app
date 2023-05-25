@@ -65,12 +65,21 @@ Após instalar o Maven é necessário reiniciar o pc.
 
 ## Docker 
 
-> Execute the command **mvn clean package** before.
+> Execute the command ```cd api; mvn clean package -DskipTests; cd ..``` to build backend image.
 
 ### Build
-* docker build --tag=northwind-api:1.1  .
-* docker run -d -p 8080:8080 northwind-api:1.1 
+* docker build --tag=jpcabana1/northwind-api:latest  .
+* docker run -d -p 8080:8080 jpcabana1/northwind-api:latest 
 
 ### Compose
 * docker compose --file docker-compose.yml up -d --build
 * docker compose --file docker-compose.yml down
+
+
+## Reference
+* [How to Replace Environment Variables Using the envsubst Command](https://linuxhandbook.com/envsubst-command/)
+* [Dynamically Set Angular Environment Variables in Docker](https://nkpremices.com/dynamically-set-angular-env-variables-in-docker/)
+* [How to quickly replace environment variables in a file](https://skofgar.ch/dev/2020/08/how-to-quickly-replace-environment-variables-in-a-file/)
+* [Dockerize Angular Application](https://medium.com/codex/dockerize-angular-application-69e7503d1816)
+
+
