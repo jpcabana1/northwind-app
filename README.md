@@ -65,8 +65,8 @@ Após instalar o Maven é necessário reiniciar o pc.
 
 ## Docker 
 
-> Execute the command ```cd api; mvn clean package -DskipTests; cd ..``` to build backend image.
-> ./run.ps1
+* Execute the command ```cd api; mvn clean package -DskipTests; cd ..``` to build backend image.
+* ./run.ps1
 
 ### Build
 * docker build --tag=jpcabana1/northwind-api:latest  .
